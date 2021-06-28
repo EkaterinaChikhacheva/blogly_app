@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %} Add A Post {% endblock %}
+{% block content %}
+
+<h1 class = 'display-3'>Add post for {{user.first_name}} {{user.last_name}}<h1>
+    <!-- DOESNT TAKE ME TO THE NEEDED ROUTE -->
+    <form action = "/users/{{user.id}}/posts/new" method="POST"> 
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-control" id="title" name = 'title'>
+        </div>
+        <div class="mb-3">
+          <label for="content" class="form-label">Content</label>
+          <textarea type="textarea" class="form-control" id="content" name = 'content'> </textarea>
+        </div>
+        <a href = '/users/{{user.id}}' class = 'btn btn-info active'> Cancel </a>
+        <button type="submit" class="btn btn-success">Add</button>
+      </form>
+
+
+
+
+{% endblock %}
