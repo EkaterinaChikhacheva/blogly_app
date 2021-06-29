@@ -4,9 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-def connect_db(app):
-    db.app = app
-    db.init_app(app)
 
 
 class User(db.Model):
@@ -46,17 +43,32 @@ class User(db.Model):
 
 class Post(db.Model):
 
-    __tablename__ = 'posts'
+    __tablename__ ='posts'
 
     '''Posts table'''
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.Text, nullable=False)
-    content = db.Column(db.Text, nullable=False)
+
+    id = db.Column(
+                    db.Integer, 
+                    primary_key=True, 
+                    autoincrement = True)
+
+    title = db.Column(
+                    db.String, 
+                    nullable=False)
+
+    content = db.Column(
+                    db.Text, 
+                    nullable=False)
+
     created_at = db.Column(
-        db.DateTime,
-        nullable=False,
-        default=datetime.datetime.now)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+                    db.DateTime,
+                    nullable=False,
+                    default=datetime.datetime.now)
+
+    user_id = db.Column(
+                    db.Integer, 
+                    db.ForeignKey('users.id'), 
+                    nullable=False)
 
 
 
@@ -74,3 +86,8 @@ class Post(db.Model):
         self.content = cnt
         self.created_at = time
         self.user_id = user
+
+
+def connect_db(app):
+    db.app = app
+    db.init_app(app)

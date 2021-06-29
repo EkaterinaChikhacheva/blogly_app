@@ -99,7 +99,7 @@ def handle_add_post_form(user_id):
     created_at = datetime.now()
     user = User.query.get(user_id)
 ###############################
-    new_post = Post(title = title, content = content, created_at = created_at, user_id = user )
+    new_post = Post(title = title, content = content, created_at = created_at, user_id = user_id )
     # new_post.Post.update(title,content,created_at,user)
 
     db.session.add(new_post)
